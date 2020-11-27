@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  
+  <h3 class="ser_h">Pending Requests</h3>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+
+        {% for donor in donors %}
+
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+
+            {% if donor.bloodgroup == 'A+' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/A+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'A-' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/A-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'B+' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/B+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'B-' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/B-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'AB+' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/AB+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'AB-' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/AB-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'O+' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/O+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+            {% if donor.bloodgroup == 'O-' %}
+
+            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/O-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+            {% endif %}
+
+
+
+
+
+            <div class="card-body">
+              <p class="card-text"><a href="#"><em>{{ donor.name }}</em></a></p>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <div class="btn-group">
+                  
+                  <a type="button" href="{% url 'donor-update' donor.id %}" class="btn btn-sm btn-outline-secondary">Verify Donor</a>
+                </div>
+                <small class="text-muted"> {{ donor.bloodgroup }} <br> {{ donor.location }} <br>{{donor.phone}} </small>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+       </div>
+   </div>
+</div>
+
+
+
+{% endblock %}

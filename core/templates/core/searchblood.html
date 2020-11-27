@@ -1,0 +1,199 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+		
+		{% if error_msg %}
+	<h2 class="ser_h">{{ error_msg }}</h2>
+	
+	{% endif %}
+
+		
+
+			{% if bloodrecords == 'Noresult' %}
+
+				<div class="col-md-8 ml-auto mr-auto">
+			        	
+			       <div class="card mb-4 shadow-sm">
+
+				<div class="ser_h" style="font-size: 35px">No matching result found. <br> 
+					<div class="form-group">
+				        <button type="submit" class="btn btn-secondary btn-block" value="Save"> Search for Donors Instead </button>
+				    </div> 
+
+				 </div> 
+
+				</div>
+			</div>
+
+			<p class="divider-text">
+				        <span class="bg-light">OR</span>
+				    </p>
+				{% endif %}
+
+			
+
+
+			{% if bloodrecords != 'Noresult' %}
+
+
+			
+			
+				
+				<div class="album py-5 bg-light">
+			    <div class="container">
+			    	<div class="row">
+			    	{% for bloodrecord in bloodrecords %}
+			      
+			      	
+			      	
+			        
+			        	
+			       	
+
+			        <div class="col-md-4">
+			        	
+			          <div class="card mb-4 shadow-sm">
+
+			            {% if bloodrecord.bloodgroup == 'A+' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/A+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'A-' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/A-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'B+' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/B+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'B-' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/B-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'AB+' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/AB+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'AB-' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/AB-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'O+' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/O+.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+			            {% if bloodrecord.bloodgroup == 'O-' %}
+
+			            <img class="bd-placeholder-img card-img-top" width="100%" height="165" src="{% static 'core/images/O-.jpg' %}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+
+			            {% endif %}
+
+
+
+
+			            
+			            <div class="card-body">
+			              <p class="card-text"><a href="#"><em>{{ bloodrecord.bloodgroup }}</em></a></p>
+			              <div class="d-flex justify-content-between align-items-center">
+
+			                <div class="btn-group">
+			                  
+			                  <a type="button" href="#" class="btn btn-sm btn-outline-secondary">Sell</a>
+			                </div>
+			                <small class="text-muted"> Donated: {{ bloodrecord.donate_date }} <br> Expiry: {{ bloodrecord.expiry_date }} <br>Amount: {{bloodrecord.amount}} Unit </small>
+			            
+			              </div>
+			            </div>
+			            
+			          </div>
+
+			        </div>
+
+
+
+
+			         
+			      	
+			        
+			        
+
+			       
+			       {% endfor %}
+
+			   </div>
+			   </div>
+			</div>
+
+
+			
+			
+
+
+
+
+
+
+			{% endif %}
+
+			{% if type == 'indexsearch' %}
+				<a href="{% url 'searchblood' %}"><h1 class="ser_h" style="margin-bottom: 35px">Continue Searching</h1></a>
+
+			{% else %}
+
+			<div class="card bg-light">
+				<article class="card-body mx-auto" style="max-width: 400px;">
+					<h4 class="card-title mt-3 text-center">Search Blood Records</h4>
+
+		<form method="POST">
+			{% csrf_token %}
+			
+
+			<div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-tint"></i> </span>
+						</div>
+						<select name='bloodgroup' class="form-control">
+							<option  selected=""> Select Blood Type: </option>
+								<option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB-</option>
+                                <option>AB+</option>
+                                <option>O+</option>
+                                <option>O-</option>
+						</select>
+					</div> <!-- form-group end.// -->
+
+					<div class="form-group">
+				        <button type="submit" class="btn btn-primary btn-block" value="Save"> Search  </button>
+				    </div> 
+
+		</form>
+	</article>
+</div>
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

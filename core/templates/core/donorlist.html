@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	{% if error_msg %}
+	<h2 class="ser_h">{{ error_msg }}</h2>
+	
+	{% endif %}
+
+	{% if bloodrecords == 'Noresult' %}
+
+				<div class="col-md-8 ml-auto mr-auto">
+			        	
+			       <div class="card mb-4 shadow-sm">
+
+				<div class="ser_h" style="font-size: 35px">No matching result found. <br> 
+					
+
+				 </div> 
+
+				</div>
+			</div>
+
+			<p class="divider-text">
+		        <span class="bg-light">Try searching for other locations</span>
+		    </p>
+				{% endif %}
+
+			
+
+
+			{% if bloodrecords and bloodrecords != 'Noresult' %}
+		
+			<div class="container">
+				<h3 class="ser_h mb-5 "> List of Donors that meet your criteria: </h3>
+		    	<div class="row inner-row">
+					<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+						
+						<ul class="event-list">
+							{% for record in bloodrecords %}
+							<li>
+								<time datetime="2019-09-2">
+									<span class="day">{{ record.bloodgroup }}</span>
+						
+								</time>	
+								<div class="info">
+									<h2 class="title">{{ record.name }}</h2>
+									<p class="desc">{{ record.location }}</p>
+									<p class="desc">{{ record.gender }}</p>
+									<p class="desc">{{ record.phone }}</p>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		
+
+
+			<a href="{% url 'searchdonor' %}"><h1 class="ser_h" style="margin-bottom: 35px">Donor Search  HomePage</h1></a>
+
+	{% else %}
+
+				<div class="row justify-content-center inner-row">
+
+	 				<div class="col-md-6 pt-3" >
+                        	<h2 class="search_h">Search For Donors</h2> 
+                            <form method="POST">
+                            {% csrf_token %}
+                            <p>
+                            <div class="row">
+                             <div class="col-md pt-3">
+	                          <div class="search-form form-group" style=" width: 75%; margin-left: 45%">
+	                              <select name="bloodgroup" id="inputState" class="form-control">
+	                                <option selected>Select Blood Type: </option>
+	                                <option>A+</option>
+	                                <option>A-</option>
+	                                <option>B+</option>
+	                                <option>B-</option>
+	                                <option>AB-</option>
+	                                <option>AB+</option>
+	                                <option>O+</option>
+	                                <option>O-</option>
+	                              </select>
+
+	                               
+	                            </div>
+	                        </div>
+	                        <div class="col-md pt-3">
+	                          <div class="search-form form-group" style=" width: 75%; margin-right: 35%">
+	                              <select id="inputState" name="location" class="form-control">
+	                                <option selected>Select location: </option>
+	                                <option>Kathmandu</option>
+	                                <option>Bhaktapur</option>
+	                                <option>Lalitpur</option>
+	                                <option>Birtamod</option>
+	                                <option>Pokhara</option>
+	                              </select>
+
+	                               
+	                            </div>
+                      		  </div>
+                       		</div>
+
+            	          <button type="submit" class="searchbtn btn btn-primary btn-block" style="width: 70%; margin-bottom: 35px">Search</button>
+            	      </p>
+                          </form>
+
+            	        </div>
+    				</div>
+    
+{% endif %}
+
+
+
+
+
+{% endblock %}

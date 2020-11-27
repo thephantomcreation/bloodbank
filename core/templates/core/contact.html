@@ -1,0 +1,135 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<form method="POST" action="{% url 'index' %}">
+			{% csrf_token %}
+	    <!--   <input type="text" name="name" placeholder="your Name" required>
+			
+			
+				
+			<<input type="email" name="email" placeholder="your Email" required>
+				
+			<textarea name="message" placeholder="your message" required></textarea> <br>
+
+		-->
+
+			{{ form }}
+			<button class="btn btn-dark text-white btn lg">SUBMIT</button>
+
+
+
+
+
+
+{% endblock %}
+
+<div class="container">
+			
+
+			<div class="card bg-light">
+				<article class="card-body mx-auto" style="max-width: 400px;">
+					<h4 class="card-title mt-3 text-center">Become a Donor</h4>
+					<p class="text-center">Register and be a volunteer.</p>
+					<p>
+						<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Register via Twitter</a>
+						<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Register via facebook</a>
+					</p>
+					<p class="divider-text">
+				        <span class="bg-light">OR</span>
+				    </p>
+
+				     <form method="post" action="">
+				     	{% csrf_token %}
+				     	<input type="text" name="" placeholder="NAme"><br>
+				     	<input type="number" name="" placeholder="Age">
+				     	<input type="text" placeholder="gender" name="">
+				     	<input type="text" placeholder="blood" name="">
+				     	<input type="text" placeholder="Location" name="">
+
+						<button type="submit">Submit</button>
+
+				     	
+				     </form>
+
+					<form method="POST" action=".">
+						{% csrf_token %}
+
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+						 </div>
+				        <input name="name" class="form-control" placeholder="Full name" type="text">
+				    </div> <!-- form-group// -->
+				    <div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
+						 </div>
+				        <input name="age" class="form-control" placeholder="Age" type="number" min="17" max="70">
+				    </div> <!-- form-group// -->
+				    
+				    <div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-mars"></i> </span>
+						</div>
+						<select class="form-control">
+							<option selected=""> Select Gender</option>
+								<option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                                
+						</select>
+						</div> <!-- form-group end.// -->
+
+						<div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+						</div>
+						<select class="custom-select" style="max-width: 120px;">
+						    <option selected="">+977</option>
+						</select>
+				    	<input name="phone" class="form-control" placeholder="Phone number" type="text">
+				    </div> <!-- form-group// -->
+
+				    <div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-tint"></i> </span>
+						</div>
+						<select class="form-control">
+							<option selected=""> Select Blood type</option>
+								<option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB-</option>
+                                <option>AB+</option>
+                                <option>O+</option>
+                                <option>O-</option>
+						</select>
+					</div> <!-- form-group end.// -->
+					<div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+						</div>
+						<select class="form-control">
+							<option selected=""> Select Location</option>
+								<option>Kathmandu</option>
+                                <option>Bhaktapur</option>
+                                <option>Lalitpur</option>
+                                <option>Birtamod</option>
+                                <option>Pokhara</option>
+						</select>
+					</div> <!-- form-group end.// -->
+				                                       
+				    <div class="form-group">
+				        <button type="submit" class="btn btn-primary btn-block" value="Save"> Register  </button>
+				    </div> <!-- form-group// -->      
+				                                                                     
+				</form>
+				</article>
+				</div> <!-- card.// -->
+
+				</div> 
+				<!--container end.//-->
